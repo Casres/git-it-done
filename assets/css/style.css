@@ -182,6 +182,7 @@ p {
   font-size: 1.2rem;
   border: 2px solid var(--light-dark);
   border-radius: var(--border-radius);
+  
 }
 
 /* HEIGHT / WIDTH UTILS */
