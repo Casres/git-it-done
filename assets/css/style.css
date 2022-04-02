@@ -39,8 +39,10 @@ p {
 
  #moreRepoInfo, #moreRepoInfoLink{
   font-size: 1.45rem;
+  color: #38302e;
   margin-top: 3rem;
   margin-bottom: 1.25rem;
+  text-decoration-line: none;
 }
 
 #moreRepoInfoLink:hover {

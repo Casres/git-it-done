@@ -65,7 +65,7 @@ var displayWarning = function (repo) {
     var linkEl = document.createElement("a");
     linkEl.id = ("moreRepoInfoLink");
     linkEl.textContent = "GitHub repo"
-    linkEl.link = " https://github.com/" + repo + "/issues";
+    linkEl.href = " https://github.com/" + repo + "/issues";
 
     // I don't know why we have to put this
     // linkEl.setAttribute = ("href", "https://github.com/" + repo + "/issues");
