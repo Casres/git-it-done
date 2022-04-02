@@ -1,7 +1,7 @@
 
 
 var issueContainerEl = document.querySelector("#issues-container");
-
+var limitWarningEl = document.querySelector("#limit-warning");
 
 
 var getRepoIssues = function (repo) {
@@ -10,6 +10,9 @@ var getRepoIssues = function (repo) {
     if (response.ok) {
       response.json().then(function (data) {
         displayIssues(data);
+        if (response.headers.get(displayWarning(repo))) {
+            console.log("repo has more than 30 issues");
+        }
       });
     } else {
       alert("There was a problem with your request");
@@ -52,6 +55,25 @@ var displayIssues = function (issues) {
         // appending to element in html that'll hold everything
         issueContainerEl.appendChild(issueEl);
     }
+};
+
+var displayWarning = function (repo) {
+    var linkEl = document.createElement("a");
+    linkEl.id = ("moreRepoInfoLink");
+    linkEl.textContent = "GitHub"
+    linkEl.link = " https://github.com/" + repo + "/issues";
+
+    // add text to warning container
+    limitWarningEl.textContent = "To see more than 30 issues, visit the " + linkEl + " repo";
+    limitWarningEl.id = ("moreRepoInfo");
+
+
+    // I don't know why we have to put this
+    // linkEl.setAttribute = ("href", "https://github.com/" + repo + "/issues");
+    // linkEl.setAttribute = ("target", "_blank");
+
+    // append to warning container
+    // limitWarningEl.appendChild(linkEl);
 };
 
 getRepoIssues("facebook/react");
