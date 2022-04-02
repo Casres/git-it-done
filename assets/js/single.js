@@ -58,22 +58,21 @@ var displayIssues = function (issues) {
 };
 
 var displayWarning = function (repo) {
-    var linkEl = document.createElement("a");
-    linkEl.id = ("moreRepoInfoLink");
-    linkEl.textContent = "GitHub"
-    linkEl.link = " https://github.com/" + repo + "/issues";
-
     // add text to warning container
-    limitWarningEl.textContent = "To see more than 30 issues, visit the " + linkEl + " repo";
+    limitWarningEl.textContent = "To see more than 30 issues, visit the ";
     limitWarningEl.id = ("moreRepoInfo");
 
+    var linkEl = document.createElement("a");
+    linkEl.id = ("moreRepoInfoLink");
+    linkEl.textContent = "GitHub repo"
+    linkEl.link = " https://github.com/" + repo + "/issues";
 
     // I don't know why we have to put this
     // linkEl.setAttribute = ("href", "https://github.com/" + repo + "/issues");
     // linkEl.setAttribute = ("target", "_blank");
 
     // append to warning container
-    // limitWarningEl.appendChild(linkEl);
+    limitWarningEl.appendChild(linkEl);
 };
 
 getRepoIssues("facebook/react");
