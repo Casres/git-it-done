@@ -2,7 +2,13 @@
 
 var issueContainerEl = document.querySelector("#issues-container");
 var limitWarningEl = document.querySelector("#limit-warning");
+var queryString = document.location.search;
 
+var getRepoName = function () {
+    var repoName = queryString.split("=")[1];
+    getRepoIssues(repoName);
+    console.log(repoName);
+}
 
 var getRepoIssues = function (repo) {
   var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc";
@@ -58,21 +64,24 @@ var displayIssues = function (issues) {
 };
 
 var displayWarning = function (repo) {
-    // add text to warning container
-    limitWarningEl.textContent = "To see more than 30 issues, visit the ";
-    limitWarningEl.id = ("moreRepoInfo");
+    limitWarningEl.innerHTML = `<span id="moreRepoInfo"> To see more than 30 issues, visit the </span> <a href="https://github.com/${repo}/issues" target="_blank" id="moreRepoInfoLink">GitHub Repo</a>`
+    
+    // lines below did the same thing as the two lines above...
 
-    var linkEl = document.createElement("a");
-    linkEl.id = ("moreRepoInfoLink");
-    linkEl.textContent = "GitHub repo"
-    linkEl.href = " https://github.com/" + repo + "/issues";
+    // add text to warning container
+    // limitWarningEl.textContent = "To see more than 30 issues, visit the " ;
+    // limitWarningEl.id = ("moreRepoInfo");
+    //  document.createElement("a");
+    // linkEl.id = ("moreRepoInfoLink");
+    // linkEl.setAttribute = ("target", "_blank");
+    // linkEl.textContent = "GitHub repo"
+    // linkEl.href = " https://github.com/" + repo + "/issues";
 
     // I don't know why we have to put this
     // linkEl.setAttribute = ("href", "https://github.com/" + repo + "/issues");
-    // linkEl.setAttribute = ("target", "_blank");
 
     // append to warning container
-    limitWarningEl.appendChild(linkEl);
+    // limitWarningEl.appendChild(linkEl);
 };
 
-getRepoIssues("facebook/react");
+getRepoName();
